@@ -1,5 +1,18 @@
-# @echo off
+@echo off
 
-rem This batch file is modified to skip authentication and launch the main program directly
+:: Bypass authentication
+echo Bypassing authentication...
 
-python -c "import freezinggreens; freezinggreens.main()"
+:: Show debug output
+set DEBUG_MODE=TRUE
+if %DEBUG_MODE%==TRUE (
+    echo Debug mode activated.
+)
+
+:: Launch main program with error handling
+start /wait MyMainProgram.exe
+if ERRORLEVEL 1 (
+    echo An error occurred while launching the main program.
+    exit /b 1
+)
+echo Program launched successfully!
